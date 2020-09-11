@@ -26,13 +26,7 @@ class ImagesViewController: UIViewController {
         networkDataFetcher.fetchImages { (fetchResults) in
             let results = fetchResults
             self.collectionData = results
-            
             self.collectionView.reloadData()
-//            results?.map({image in
-//                print(image)
-//                self.imageArr.append(image.urls.small)
-//                print(self.imageArr)
-//        })
         }
         
         setupUi()
@@ -55,32 +49,21 @@ class ImagesViewController: UIViewController {
         
         self.refreshCtrl = UIRefreshControl()
         self.collectionView.refreshControl = self.refreshCtrl
-        
-//        self.collectionData = []
-        
-//        refreshCollectionView()
+
+        self.refreshCtrl.addTarget(self, action: #selector(ImagesViewController.refreshCollectionView), for: .valueChanged)
     }
     
-//    func refreshCollectionView() {
-//        let url: URL! = URL(string: "https://itunes.apple.com/search?term=flappy&entity=software")
-//        task = session.downloadTask(with: url, completionHandler: { (location: URL?, response: URLResponse?, error: Error?) -> Void in
-//
-//            if location != nil{
-//                let data:Data! = try? Data(contentsOf: location!)
-//                do{
-//                    let dic = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as AnyObject
-//                    self.collectionData = dic.value(forKey : "results") as? [AnyObject]
-//                    DispatchQueue.main.async(execute: { () -> Void in
-//                        self.collectionView.reloadData()
-//                        self.collectionView.refreshControl?.endRefreshing()
-//                    })
-//                } catch{
-//                    print("something went wrong, try again")
-//                }
-//            }
-//        })
-//        task.resume()
-//    }
+    @objc func refreshCollectionView() {
+        self.collectionData = []
+        self.cache.removeAllObjects()
+        
+        networkDataFetcher.fetchImages { (fetchResults) in
+            let results = fetchResults
+            self.collectionData = results
+            self.collectionView.reloadData()
+        }
+        self.collectionView.refreshControl?.endRefreshing()
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
@@ -90,7 +73,7 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if collectionData != nil {
             return collectionData.count
         } else {
-            return 30
+            return 10
         }
     }
     
@@ -127,45 +110,10 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
                     task.resume()
                 }
             }
-            
-//            let dictionary = self.collectionData[(indexPath as NSIndexPath).row] as! [String]
-//            cell.imageView?.image = UIImage(named: "imagePlaceholder")
-            
-//            if (self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil) {
-//                // 2
-//                // Use cache
-//                print("Cached image used, no need to download it")
-//                cell.imageView?.image = self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
-//            } else {
-//                // 3
-//                let artworkUrl = dictionary[indexPath.row]
-//                let url:URL! = URL(string: artworkUrl)
-//                task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-//                    if let data = try? Data(contentsOf: url){
-//                        // 4
-//                        DispatchQueue.main.async(execute: { () -> Void in
-//                            // 5
-//                            // Before we assign the image, check whether the current cell is visible
-//                            if let updateCell = collectionView.cellForItem(at: indexPath) as? ImagesCollectionViewCell {
-//                                let img: UIImage! = UIImage(data: data)
-//                                updateCell.imageView?.image = img
-//                                self.cache.setObject(img, forKey: (indexPath as NSIndexPath).row as AnyObject)
-//                            }
-//                        })
-//                    }
-//                })
-//                task.resume()
-//            }
             return cell
         } else {
             cell.imageView?.image = UIImage(named: "imagePlaceholder")
             return cell
         }
-        
-        
-        
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.imageCellIdentifier, for: indexPath) as! ImagesCollectionViewCell
     }
-    
-    
 }

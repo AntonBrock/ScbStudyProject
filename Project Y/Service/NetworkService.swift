@@ -11,7 +11,7 @@ import Foundation
 class NetworkService {
     
     func request(completion: @escaping (Data?, Error?) -> Void) {
-        let paraments = self.prepareParaments(count: 30)
+        let paraments = self.prepareParaments(count: 10)
         let url = self.url(params: paraments)
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = prepareHeaders()
