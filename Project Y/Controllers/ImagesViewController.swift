@@ -12,7 +12,7 @@ class ImagesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var networkDataFetcher = NetworkDataFetcher()
-    
+        
     var refreshCtrl: UIRefreshControl!
     var collectionData: [ImagesResults]!
     var task: URLSessionDownloadTask!
@@ -57,6 +57,7 @@ class ImagesViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
+
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
@@ -66,9 +67,21 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if collectionData != nil {
             return collectionData.count
         } else {
-            return 10
+            return 5
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if (self.cache.object(forKey: indexPath.row as AnyObject) != nil) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let fullImageViewController = storyboard.instantiateViewController(identifier: Constants.fullImageViewController) as? FullImageViewController else { return }
+            fullImageViewController.image = self.cache.object(forKey: indexPath.row as AnyObject) as? UIImage
+            show(fullImageViewController, sender: nil)
+        } else {
+            print("Не-а, нет еще картинки, тут можно показывать поп-ап или добавить анимацию на collection")
+        }
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -76,12 +89,11 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         if collectionData != nil {
             if let data = collectionData {
-                let dictionary = data[(indexPath as NSIndexPath).row]
+                let dictionary = data[indexPath.row]
                 cell.imageView?.image = UIImage(named: "imagePlaceholder")
-                if (self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil) {
-                    // Use cache
+                if (self.cache.object(forKey: indexPath.row as AnyObject) != nil) {
                     print("Изображение закешировано, повторное скачивание не нужно.")
-                    cell.imageView?.image = self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
+                    cell.imageView?.image = self.cache.object(forKey: indexPath.row as AnyObject) as? UIImage
                 } else {
                     let artworkUrl = dictionary.urls.small
                     let url:URL! = URL(string: artworkUrl)
@@ -92,7 +104,7 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
                                 if let updateCell = collectionView.cellForItem(at: indexPath) as? ImagesCollectionViewCell {
                                     let img: UIImage! = UIImage(data: data)
                                     updateCell.imageView?.image = img
-                                    self.cache.setObject(img, forKey: (indexPath as NSIndexPath).row as AnyObject)
+                                    self.cache.setObject(img, forKey: indexPath.row as AnyObject)
                                 }
                             })
                         }

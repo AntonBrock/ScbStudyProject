@@ -19,6 +19,7 @@
 		84F7C0BB250A5E4F00C94A12 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7C0BA250A5E4F00C94A12 /* NetworkService.swift */; };
 		84F7C0BD250A6E1F00C94A12 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7C0BC250A6E1F00C94A12 /* NetworkDataFetcher.swift */; };
 		84F7C0BF250A6ED600C94A12 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7C0BE250A6ED500C94A12 /* Images.swift */; };
+		84F7C0C3250BC88000C94A12 /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7C0C2250BC88000C94A12 /* FullImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		84F7C0BA250A5E4F00C94A12 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		84F7C0BC250A6E1F00C94A12 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		84F7C0BE250A6ED500C94A12 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		84F7C0C2250BC88000C94A12 /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				84F7C0B0250A506700C94A12 /* ImagesViewController.swift */,
 				84F7C0B5250A535F00C94A12 /* ImagesCollectionViewCell.swift */,
+				84F7C0C2250BC88000C94A12 /* FullImageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			files = (
 				84F7C0BD250A6E1F00C94A12 /* NetworkDataFetcher.swift in Sources */,
 				84F7C0B1250A506700C94A12 /* ImagesViewController.swift in Sources */,
+				84F7C0C3250BC88000C94A12 /* FullImageViewController.swift in Sources */,
 				84F7C099250A4D3300C94A12 /* AppDelegate.swift in Sources */,
 				84F7C09B250A4D3300C94A12 /* SceneDelegate.swift in Sources */,
 				84F7C0B7250A535F00C94A12 /* ImagesCollectionViewCell.swift in Sources */,

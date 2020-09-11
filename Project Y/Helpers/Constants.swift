@@ -10,4 +10,5 @@ import Foundation
 
 struct Constants {
     static var imageCellIdentifier = "imageCellIdentifier"
+    static var fullImageViewController = "FullImageViewController"
 }
