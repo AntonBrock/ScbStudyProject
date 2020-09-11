@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCellIdentifier" id="gTV-IL-0wX" customClass="ImagesCollectionViewCell" customModule="Project_Y" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOA-r6-ssj">
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="R7h-B9-f8N">
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="R7h-B9-f8N" firstAttribute="leading" secondItem="aOA-r6-ssj" secondAttribute="leading" id="A2z-9D-IOs"/>
+                            <constraint firstAttribute="height" constant="90" id="CHh-UF-IY8"/>
+                            <constraint firstAttribute="bottom" secondItem="R7h-B9-f8N" secondAttribute="bottom" id="ION-hV-BdQ"/>
+                            <constraint firstItem="R7h-B9-f8N" firstAttribute="top" secondItem="aOA-r6-ssj" secondAttribute="top" id="QOD-pJ-YG9"/>
+                            <constraint firstAttribute="trailing" secondItem="R7h-B9-f8N" secondAttribute="trailing" id="ZYd-E9-bRo"/>
+                            <constraint firstAttribute="width" constant="90" id="gtz-Ag-GvN"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="aOA-r6-ssj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="2sO-CH-CZJ"/>
+                <constraint firstItem="aOA-r6-ssj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="A5w-Tb-rWN"/>
+                <constraint firstAttribute="trailing" secondItem="aOA-r6-ssj" secondAttribute="trailing" id="eP3-u2-ae1"/>
+                <constraint firstAttribute="bottom" secondItem="aOA-r6-ssj" secondAttribute="bottom" id="gTn-CI-wlY"/>
+            </constraints>
+            <size key="customSize" width="90" height="90"/>
+            <connections>
+                <outlet property="imageView" destination="R7h-B9-f8N" id="NWL-L8-agX"/>
+            </connections>
+            <point key="canvasLocation" x="105.79710144927537" y="97.767857142857139"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="imagePlaceholder" width="600" height="400"/>
+    </resources>
+</document>
