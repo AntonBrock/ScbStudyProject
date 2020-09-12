@@ -12,7 +12,7 @@ class NetworkDataFetcher {
     var networkService = NetworkService()
     
     func fetchImages(completion: @escaping ([ImagesResults]?) -> ()) {
-        networkService.request { (data, error) in
+        networkService.request() { (data, error) in
             if let error = error {
                 print("Error with request: \(error.localizedDescription)")
                 completion(nil)
@@ -35,8 +35,10 @@ class NetworkDataFetcher {
             return nil
         }
     }
+
     
-    // не знаю, почему не сработало это. Нашел в инете через генерик для любого типа
+    
+// не знаю, почему не сработало это. Нашел в инете через генерик для любого типа
 //    func parseJSON(forType: Decodable?, fromData: Data?) {
 //        let decoder = JSONDecoder()
 //

@@ -15,14 +15,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="О! Картинки" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBi-3m-V42">
-                                <rect key="frame" x="143" y="108" width="128" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Потяни вниз, чтобы обновить картинки" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBi-3m-V42">
+                                <rect key="frame" x="10" y="108" width="394" height="51.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="32R-zp-0yC">
-                                <rect key="frame" x="10" y="149" width="394" height="713"/>
+                                <rect key="frame" x="10" y="174.5" width="394" height="687.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WBK-g3-lRI">
                                     <size key="itemSize" width="128" height="128"/>
@@ -36,8 +36,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="32R-zp-0yC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="42T-xF-4gG"/>
+                            <constraint firstItem="wBi-3m-V42" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="4BC-ni-ath"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="32R-zp-0yC" secondAttribute="bottom" id="5bs-nS-Jsz"/>
                             <constraint firstItem="wBi-3m-V42" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="QUm-Kd-Rpt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wBi-3m-V42" secondAttribute="trailing" constant="10" id="Wbe-o7-Uts"/>
                             <constraint firstItem="32R-zp-0yC" firstAttribute="top" secondItem="wBi-3m-V42" secondAttribute="bottom" constant="15" id="lW1-RD-r25"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="32R-zp-0yC" secondAttribute="trailing" constant="10" id="uI0-UV-0HX"/>
                             <constraint firstItem="wBi-3m-V42" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yBL-6J-0gs"/>

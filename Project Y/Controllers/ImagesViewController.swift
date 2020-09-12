@@ -18,16 +18,15 @@ class ImagesViewController: UIViewController {
     var task: URLSessionDownloadTask!
     var session: URLSession!
     var cache:NSCache<AnyObject, AnyObject>!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         session = URLSession.shared
         task = URLSessionDownloadTask()
         cache = NSCache()
-        
+                
         getDataImages()
-        
         setupUi()
     }
     
@@ -51,11 +50,27 @@ class ImagesViewController: UIViewController {
     }
     
     func getDataImages() {
-        networkDataFetcher.fetchImages { (fetchResults) in
+        networkDataFetcher.fetchImages() { (fetchResults) in
             let results = fetchResults
             self.collectionData = results
             self.collectionView.reloadData()
         }
+    }
+    
+    func downloadImages(with url: String, forKey: IndexPath) {
+        let url: URL! = URL(string: url)
+        task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
+            if let data = try? Data(contentsOf: url){
+                DispatchQueue.main.async(execute: { () -> Void in
+                    if let updateCell = self.collectionView.cellForItem(at: forKey) as? ImagesCollectionViewCell {
+                        let img: UIImage! = UIImage(data: data)
+                        updateCell.imageView?.image = img
+                        self.cache.setObject(img, forKey: forKey.row as AnyObject)
+                    }
+                })
+            }
+        })
+        task.resume()
     }
 
 }
@@ -67,7 +82,7 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if collectionData != nil {
             return collectionData.count
         } else {
-            return 5
+            return 10
         }
     }
     
@@ -95,21 +110,8 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
                     print("Изображение закешировано, повторное скачивание не нужно.")
                     cell.imageView?.image = self.cache.object(forKey: indexPath.row as AnyObject) as? UIImage
                 } else {
-                    let artworkUrl = dictionary.urls.small
-                    let url:URL! = URL(string: artworkUrl)
-                    task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-                        if let data = try? Data(contentsOf: url){
-                            DispatchQueue.main.async(execute: { () -> Void in
-                                // Before we assign the image, check whether the current cell is visible
-                                if let updateCell = collectionView.cellForItem(at: indexPath) as? ImagesCollectionViewCell {
-                                    let img: UIImage! = UIImage(data: data)
-                                    updateCell.imageView?.image = img
-                                    self.cache.setObject(img, forKey: indexPath.row as AnyObject)
-                                }
-                            })
-                        }
-                    })
-                    task.resume()
+                    let urlString = dictionary.urls.small
+                    downloadImages(with: urlString, forKey: indexPath)
                 }
             }
             return cell
